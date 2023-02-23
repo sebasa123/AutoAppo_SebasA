@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoAppo_SebasA.Views.AppLoginPage"
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="AliceBlue">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="50,50,50,250">
+            <Entry x:Name="TxtEmail" Placeholder="Email" FontSize="25" 
+                   Keyboard="Email"/>
+            <Entry x:Name="TxtPassword" Placeholder="Password" FontSize="25" 
+                   Keyboard="Default" IsPassword="True"/>
+            
+            <Button x:Name="BtnLogin" Text="Log in" BackgroundColor="LightGreen" 
+                    FontSize="25" CornerRadius="10" Clicked="Button_Clicked"/>
+            
+            <Button x:Name="BtnSignUp" Text="Sign up" BackgroundColor="Violet" 
+                    FontSize="25" CornerRadius="10" Clicked="BtnSignUp_Clicked"/>
+            
+            <Label Text="Password Recovery"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
