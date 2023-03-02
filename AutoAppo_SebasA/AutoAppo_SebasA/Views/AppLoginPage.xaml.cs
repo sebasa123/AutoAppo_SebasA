@@ -61,9 +61,9 @@ namespace AutoAppo_SebasA.Views
             }
         }
 
-        private void BtnSignUp_Clicked(object sender, EventArgs e)
+        private async void BtnSignUp_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new SignUpPage());
         }
     }
 }

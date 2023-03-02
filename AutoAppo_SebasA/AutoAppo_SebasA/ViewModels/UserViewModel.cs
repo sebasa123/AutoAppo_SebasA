@@ -38,5 +38,55 @@ namespace AutoAppo_SebasA.ViewModels
                 IsBusy = false; 
             }
         }
+        public async Task<List<UserRole>> GetUserRoles()
+        {
+            try
+            {
+                List<UserRole> roles = new List<UserRole>();
+                roles = await MyUserRole.GetAllUserRoleList();
+                if (roles == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return roles;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<bool> AddUser(string pEmail, string pName, string pPassword,
+            string pIDNumber, string pPhoneNumber, string pAddress, int pUserRole,
+            int pUserStatus = 3)
+        {
+            if (IsBusy) return false;
+            IsBusy = true;
+            try
+            {
+                MyUser.Email = pEmail;
+                MyUser.LoginPassword = pPassword;
+                MyUser.Name = pName;
+                MyUser.PhoneNumber = pPhoneNumber;
+                MyUser.Address = pAddress;
+                MyUser.CardId = pIDNumber;
+                MyUser.UserRoleId = pUserRole;
+                MyUser.UserStatusId = pUserStatus;
+                bool R = await MyUser.AddUser();
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
     }
 }

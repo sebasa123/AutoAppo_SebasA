@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace AutoAppo_SebasA.Models
@@ -10,8 +11,7 @@ namespace AutoAppo_SebasA.Models
     public class User
     {
         public RestRequest Request { get; set; }
-        const string MimeType = "Application/json";
-        const string ContentType = "Content-Type";
+        
         public User()
         {
             
@@ -42,10 +42,42 @@ namespace AutoAppo_SebasA.Models
                 Request = new RestRequest(URL, Method.Get);
                 Request.AddHeader(Services.APIConnection.ApiKeyName,
                     Services.APIConnection.ApiKeyValue);
-                Request.AddHeader(ContentType, MimeType);
+                //Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
                 RestResponse response = await client.ExecuteAsync(Request);
                 HttpStatusCode statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+
+                throw;
+            }
+        }
+
+        public async Task<bool> AddUser()
+        {
+            try
+            {
+                string RouteSuffix = string.Format("Users");
+                string URL = Services.APIConnection.ProductionURLPrefix + RouteSuffix;
+                RestClient client = new RestClient(URL);
+                Request = new RestRequest(URL, Method.Post);
+                Request.AddHeader(Services.APIConnection.ApiKeyName,
+                    Services.APIConnection.ApiKeyValue);
+                //Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                string SerializedModel = JsonConvert.SerializeObject(this);
+                //Request.AddBody(SerializedModel, GlobalObjects.MimeType);
+                RestResponse response = await client.ExecuteAsync(Request);
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.Created)
                 {
                     return true;
                 }
