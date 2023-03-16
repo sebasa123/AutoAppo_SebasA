@@ -17,17 +17,16 @@ namespace AutoAppo_SebasA.Models
             
         }
         public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string LoginPassword { get; set; }
+        public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string LoginPassword { get; set; } = null!;
         public string CardId { get; set; }
         public string Address { get; set; }
         public int UserRoleId { get; set; }
         public int UserStatusId { get; set; }
-
-        public virtual UserRole UserRole { get; set; }
-        public virtual UserStatus UserStatus { get; set; }
+        public virtual UserRole? UserRole { get; set; } = null!;
+        public virtual UserStatus? UserStatus { get; set; } = null!;
         //public virtual ICollection<Appointment> Appointments { get; set; }
 
         public async Task<bool> ValidateLogin()
@@ -42,7 +41,7 @@ namespace AutoAppo_SebasA.Models
                 Request = new RestRequest(URL, Method.Get);
                 Request.AddHeader(Services.APIConnection.ApiKeyName,
                     Services.APIConnection.ApiKeyValue);
-                //Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
                 RestResponse response = await client.ExecuteAsync(Request);
                 HttpStatusCode statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)
@@ -72,9 +71,9 @@ namespace AutoAppo_SebasA.Models
                 Request = new RestRequest(URL, Method.Post);
                 Request.AddHeader(Services.APIConnection.ApiKeyName,
                     Services.APIConnection.ApiKeyValue);
-                //Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
                 string SerializedModel = JsonConvert.SerializeObject(this);
-                //Request.AddBody(SerializedModel, GlobalObjects.MimeType);
+                Request.AddBody(SerializedModel, GlobalObjects.MimeType);
                 RestResponse response = await client.ExecuteAsync(Request);
                 HttpStatusCode statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.Created)

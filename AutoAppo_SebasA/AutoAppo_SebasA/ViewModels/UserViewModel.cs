@@ -11,11 +11,41 @@ namespace AutoAppo_SebasA.ViewModels
         public UserRole MyUserRole { get; set; }
         public UserStatus MyUserStatus { get; set; }
         public User MyUser { get; set; }
+        public UserDTO MyUserDTO { get; set; }
         public UserViewModel()
         {
             MyUser = new User();
             MyUserRole = new UserRole();
             MyUserStatus = new UserStatus();
+            MyUserDTO = new UserDTO();
+        }
+
+        public async Task<UserDTO> GetUserData(string pEmail)
+        {
+            if (IsBusy) return null;
+            IsBusy = true;
+            try
+            {
+                UserDTO user = new UserDTO();
+                user = await MyUserDTO.GetUserData(pEmail);
+                if (user == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return user;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
         public async Task<bool> UserAccessValidation(string pEmail, string pPassword)
         {

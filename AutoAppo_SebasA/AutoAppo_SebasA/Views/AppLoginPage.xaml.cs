@@ -51,7 +51,8 @@ namespace AutoAppo_SebasA.Views
             }
             if (R)
             {
-                await DisplayAlert("Validatiion OK", "Access granted", "OK");
+                GlobalObjects.LocalUser = await viewModel.GetUserData(TxtEmail.Text.Trim());
+                await Navigation.PushAsync(new OptionsPage());
                 return;
             }
             else
