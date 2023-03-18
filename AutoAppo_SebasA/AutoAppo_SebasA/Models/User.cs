@@ -92,5 +92,35 @@ namespace AutoAppo_SebasA.Models
                 throw;
             }
         }
+        public async Task<List<User>> GetAllUserNameList(string pName)
+        {
+            try
+            {
+                string RouteSuffix = string.Format("User");
+                string URL = Services.APIConnection.ProductionURLPrefix + RouteSuffix;
+                RestClient client = new RestClient(URL);
+                Request = new RestRequest(URL, Method.Get);
+                Request.AddHeader(Services.APIConnection.ApiKeyName,
+                    Services.APIConnection.ApiKeyValue);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                RestResponse response = await client.ExecuteAsync(Request);
+                HttpStatusCode statusCode = response.StatusCode;
+                if (statusCode == HttpStatusCode.OK)
+                {
+                    var list = JsonConvert.DeserializeObject<List<User>>(pName);
+                    return list;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+
+                throw;
+            }
+        }
     }
 }

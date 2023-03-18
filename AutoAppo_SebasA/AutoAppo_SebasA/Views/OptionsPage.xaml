@@ -5,12 +5,18 @@
     <ContentPage.Content>
         <ScrollView>
             <FlexLayout Direction="Column">
-                <Label Text="Current user: "
+                <!--<Label Text="Current user: "
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Start"
                        FontSize="18"/>
+                <Label x:Name="LblNombreUsuario" Text=""
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
+                       FontSize="18"/>-->
                 
                 <Label Text="Select an action"
                     VerticalOptions="CenterAndExpand" 

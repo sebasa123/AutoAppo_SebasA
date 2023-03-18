@@ -24,7 +24,7 @@ namespace AutoAppo_SebasA.Models
                 Request = new RestRequest(URL, Method.Get);
                 Request.AddHeader(Services.APIConnection.ApiKeyName,
                     Services.APIConnection.ApiKeyValue);
-                //Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
+                Request.AddHeader(GlobalObjects.ContentType, GlobalObjects.MimeType);
                 RestResponse response = await client.ExecuteAsync(Request);
                 HttpStatusCode statusCode = response.StatusCode;
                 if (statusCode == HttpStatusCode.OK)

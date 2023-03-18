@@ -24,7 +24,7 @@ namespace AutoAppo_SebasA.Views
 
         private async void LoadUserRolesList()
         {
-            PckrUserRole.ItemsSource = await viewModel.GetUserRoles();
+            //PckrUserRole.ItemsSource = await viewModel.GetUserData();
         }
 
         private async void BtnCancel_Clicked(object sender, EventArgs e)

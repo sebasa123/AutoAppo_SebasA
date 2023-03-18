@@ -89,6 +89,27 @@ namespace AutoAppo_SebasA.ViewModels
                 throw;
             }
         }
+        public async Task<List<User>> GetUserName(string Name)
+        {
+            try
+            {
+                List<User> name = new List<User>();
+                name = await MyUser.GetAllUserNameList(Name);
+                if (name == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return name;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public async Task<bool> AddUser(string pEmail, string pName, string pPassword,
             string pIDNumber, string pPhoneNumber, string pAddress, int pUserRole,
             int pUserStatus = 3)
