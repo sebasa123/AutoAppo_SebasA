@@ -66,5 +66,22 @@ namespace AutoAppo_SebasA.Views
         {
             await Navigation.PushAsync(new SignUpPage());
         }
+
+        private void SwShowPassword_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (SwShowPassword.IsToggled)
+            {
+                TxtPassword.IsPassword = false;
+            }
+            else
+            {
+                TxtPassword.IsPassword = true;
+            }
+        }
+
+        private async void LblPasswordRecovery_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PasswordRecoveryPage());
+        }
     }
 }
