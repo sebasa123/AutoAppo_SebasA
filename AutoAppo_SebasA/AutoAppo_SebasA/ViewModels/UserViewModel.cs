@@ -151,9 +151,25 @@ namespace AutoAppo_SebasA.ViewModels
             try
             {
                 MyRecoveryCode.Email = pEmail;
-                string RecoveryCode = "ABC123";
+                //string RecoveryCode = "ABC123";
                 //Tarea: generar codigo aleatorio de 6 digitos
                 //entre letras mayusculas y numeros de 1-9
+                var rand = new Random();
+                var Let = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+                var Num = ("123456789");
+                string randLet = "";
+                for (int i = 0; i < 3; i++)
+                {
+                    int o = rand.Next(26);
+                    randLet += Let[o];
+                }
+                string randNum = "";
+                for (int i = 0; i < 3; i++)
+                {
+                    int o = rand.Next(9);
+                    randNum += Num[o];
+                }
+                string RecoveryCode = randLet + randNum;
                 MyRecoveryCode.RecoveryCode1 = RecoveryCode;
                 MyRecoveryCode.RecoveryCodeId = 0;
                 bool R = await MyRecoveryCode.AddRecoveryCode();
