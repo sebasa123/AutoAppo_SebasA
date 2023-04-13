@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AutoAppo_SebasA.Models;
 using AutoAppo_SebasA.ViewModels;
+using System.Threading.Tasks.Sources;
 
 namespace AutoAppo_SebasA.Views
 {
@@ -21,6 +22,15 @@ namespace AutoAppo_SebasA.Views
             //LoadUserNameList();
             //DesabilitarBotones();
         }
+
+        private async void BtnAppoManagement_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MyAppointmentListPage());
+        }
+
+
+
+
         //private async void LoadUserNameList()
         //{
         //    LblNombreUsuario.ItemsSource = await viewModel.GetUserName();

@@ -25,7 +25,7 @@ namespace AutoAppo_SebasA.Views
             if (!string.IsNullOrEmpty(TxtEmail.Text.Trim()))
             {
                 bool R = await viewModel.AddRecoveryCode(TxtEmail.Text.Trim());
-                if (true)
+                if (R)
                 {
                     TxtEmail.IsEnabled = false;
                     await DisplayAlert(":]", "Code sent succesfully", "OK");

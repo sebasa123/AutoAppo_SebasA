@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoAppo_SebasA.Views.MyAppointmentListPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="My appointment list"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ListView x:Name="LstApppoList" RowHeight="200" SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Notes}"
+                                   Detail="{Binding AppoDate}"
+                                   ImageSource="xamarin_logo"
+                                   TextColor="Black"
+                                   DetailColor="LightGray"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -38,7 +38,7 @@
                     <Button Grid.Row="0" Grid.Column="0" x:Name="BtnAppoManagement" 
                             Text="Appointment Managment" BackgroundColor="LightGreen"
                             HeightRequest="130" WidthRequest="100" FontSize="17"
-                            CornerRadius="20"/>
+                            CornerRadius="20" Clicked="BtnAppoManagement_Clicked"/>
                     <Button Grid.Row="0" Grid.Column="1" x:Name="BtnUserManagement"
                             Text="User Managment" BackgroundColor="LightBlue"
                             HeightRequest="130" WidthRequest="100" FontSize="17"

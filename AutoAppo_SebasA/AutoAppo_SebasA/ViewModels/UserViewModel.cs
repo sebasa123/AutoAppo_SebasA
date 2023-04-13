@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using AutoAppo_SebasA.Models;
@@ -12,6 +13,7 @@ namespace AutoAppo_SebasA.ViewModels
         public UserStatus MyUserStatus { get; set; }
         public User MyUser { get; set; }
         public UserDTO MyUserDTO { get; set; }
+        public Appointment MyAppointment { get; set; }
         public Email MyEmail { get; set; }
         public RecoveryCode MyRecoveryCode { get; set; }
         public UserViewModel()
@@ -22,6 +24,7 @@ namespace AutoAppo_SebasA.ViewModels
             MyUserDTO = new UserDTO();
             MyEmail = new Email();
             MyRecoveryCode = new RecoveryCode();
+            MyAppointment = new Appointment();
         }
 
         public async Task<UserDTO> GetUserData(string pEmail)
@@ -51,6 +54,38 @@ namespace AutoAppo_SebasA.ViewModels
                 IsBusy = false;
             }
         }
+
+        public async Task<ObservableCollection<Appointment>> GetAppoList(int pUserID)
+        {
+
+            if (IsBusy) return null;
+            IsBusy = true;
+            try
+            {
+                ObservableCollection<Appointment> list = 
+                    new ObservableCollection<Appointment>();
+                MyAppointment.UserId = pUserID;
+                list = await MyAppointment.GetAppointmentListByUser();
+                if (list == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         public async Task<bool> UserAccessValidation(string pEmail, string pPassword)
         {
             if (IsBusy) return false;
@@ -215,6 +250,8 @@ namespace AutoAppo_SebasA.ViewModels
                 IsBusy = false;
             }
         }
+
+
 
 
     }
