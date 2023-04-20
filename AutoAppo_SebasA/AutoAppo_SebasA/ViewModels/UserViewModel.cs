@@ -251,6 +251,30 @@ namespace AutoAppo_SebasA.ViewModels
             }
         }
 
+        public async Task<bool> UpdateUser(UserDTO pUser)
+        {
+            if (IsBusy) return false;
+            IsBusy = true;
+            try
+            {
+                bool R = await MyUser.AddUser();
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+
+
+
+
 
 
 

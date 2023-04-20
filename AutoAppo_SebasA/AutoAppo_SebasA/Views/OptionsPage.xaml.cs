@@ -28,6 +28,11 @@ namespace AutoAppo_SebasA.Views
             await Navigation.PushAsync(new MyAppointmentListPage());
         }
 
+        private async void BtnUserManagement_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UserManagementPage());
+        }
+
 
 
 
